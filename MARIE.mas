@@ -1,0 +1,186 @@
+﻿            			// MAIN PROGRAM
+            ORG 100 	/ Initial Memory Location where program starts
+            Load Tamaño_arreglo   / Load del número total de números que son 50
+            Subt Axuliar    
+            Store Apuntador
+        	Jump  Subr1	/ Subroutine Call 1
+End_Subr1,	Load RPM /MIN
+            Add Axuliar
+            Store B
+            LoadI B
+			Output
+            Load RPM/MAX
+			Add Tamaño_arreglo
+            Store B
+            LoadI B
+            Output
+            Load RPM/MED
+			Add Mediana
+            Store B
+            LoadI B
+            Output
+            Jump Subr2
+End_Subr2,	Jump END    / Terminate program
+
+		// DATA
+RPM, 	HEX 115 		
+		Dec 1505 	/ RPM Reading 1 
+        Dec 1928	/ RPM Reading 2  
+        Dec 1463	/ RPM Reading 3  
+        Dec 1705	/ RPM Reading 4  
+        Dec 1707	/ RPM Reading 5 
+        DEC 1899	/ RPM Reading 6
+        DEC 1942	/ RPM Reading 7
+        DEC 520		/ RPM Reading 8
+        DEC 1730	/ RPM Reading 9
+        DEC 1104	/ RPM Reading 10
+        DEC 887		/ RPM Reading 11
+        DEC 786		/ RPM Reading 12
+        DEC 1210	/ RPM Reading 13
+        DEC 1676	/ RPM Reading 14
+        DEC 717		/ RPM Reading 15
+        DEC 1827	/ RPM Reading 16
+        DEC 742 	/ RPM Reading 17
+        DEC 1270	/ RPM Reading 18
+        DEC 1436	/ RPM Reading 19
+        DEC 538		/ RPM Reading 20
+        DEC 1603	/ RPM Reading 21
+        DEC 1415	/ RPM Reading 22
+        DEC 1450	/ RPM Reading 23
+        DEC 1978	/ RPM Reading 24
+        DEC 1592	/ RPM Reading 25
+        DEC 1300	/ RPM Reading 26
+        DEC 965		/ RPM Reading 27
+        DEC 733		/ RPM Reading 28
+        DEC 1933	/ RPM Reading 29
+        DEC 799		/ RPM Reading 30
+        DEC 1817	/ RPM Reading 31
+        DEC 1290	/ RPM Reading 32
+        DEC 1009	/ RPM Reading 33
+        DEC 715		/ RPM Reading 34
+        DEC 1758	/ RPM Reading 35
+        DEC 519		/ RPM Reading 36
+        DEC 582		/ RPM Reading 37
+        DEC 963		/ RPM Reading 38
+        DEC 1214	/ RPM Reading 39
+        DEC 1198	/ RPM Reading 40
+        DEC 688		/ RPM Reading 41
+        DEC 1567	/ RPM Reading 42
+        DEC 1093	/ RPM Reading 43
+        DEC 1017	/ RPM Reading 44
+        DEC 1932	/ RPM Reading 45
+        DEC 1857	/ RPM Reading 46
+        DEC 1201	/ RPM Reading 47
+        DEC 909		/ RPM Reading 48
+        Dec 889		/ RPM Reading 49 
+        Dec 1421	/ RPM Reading 50 
+        // SUBROUTINES
+Subr1,		Load Apuntador
+            Skipcond 800
+            Jump End_Subr1
+            Load RPM
+            Add Axuliar
+            Store Auxiliar2
+            Clear
+			Store A
+For,		Load Apuntador
+            Subt A
+            skipcond    800
+            Jump End_for
+			Load Auxiliar2
+            Add Axuliar
+            Store X
+            LoadI X
+			Store X
+            LoadI Auxiliar2
+            Subt X
+			Skipcond	800
+            Jump End_if
+If,         Load Auxiliar2
+            Add Axuliar
+            Store B
+            LoadI Auxiliar2
+			Store C
+            LoadI B
+            StoreI Auxiliar2
+            Load C
+            StoreI B     
+End_if,     Load Auxiliar2
+			Add Axuliar
+			Store Auxiliar2
+			Load A
+            Add Axuliar
+			Store A
+        	Jump For
+End_for,	Load Apuntador
+        	Subt Axuliar
+			Store Apuntador
+        	Jump Subr1	/ Return to calling code 
+
+Print,    	Load Tamaño_arreglo
+			Subt Apuntador
+            Skipcond	800
+            Jump END
+			LoadI Auxiliar2
+            Output
+			Load Auxiliar2
+			Add Axuliar
+			Store Auxiliar2
+            Load Apuntador
+            Add Axuliar
+			Store Apuntador
+			Jump Print	
+		        
+Subr2,     	Clear
+            Store Apuntador
+            Load RPM
+            Add Axuliar
+            Store Auxiliar2
+For2,       Load Tamaño_arreglo
+			Subt Apuntador
+            Skipcond	800
+            Jump End_for2
+			LoadI Auxiliar2
+            Add Acum
+			Store Acum
+			Load Auxiliar2
+			Add Axuliar
+			Store Auxiliar2
+            Load Apuntador
+            Add Axuliar
+			Store Apuntador
+            Jump For2
+End_for2,	Clear
+			Store Apuntador
+loop, 		LOAD Acum
+            SUBT Tamaño_arreglo
+            Skipcond 800
+            Jump End_loop
+            LOAD Acum
+            SUBT Tamaño_arreglo
+            STORE Acum
+            Load Apuntador
+            Add Axuliar
+
+			Store Apuntador
+   			JUMP loop
+End_loop,   Load Apuntador
+            Output
+       		Jump End_Subr2 
+        
+END, 		Halt
+
+Axuliar,		DEC 1
+Auxiliar2,		DEC 0
+Apuntador,			DEC 0
+A,			DEC 0
+B, 			DEC 0
+C,			DEC 0
+X, 		DEC 0
+Y, 	DEC 0
+Tamaño_arreglo,		DEC 50
+Mediana,		DEC 25
+Acum, 		DEC 0
+
+
+        
